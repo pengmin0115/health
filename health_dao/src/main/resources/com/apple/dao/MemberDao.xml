@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apple.dao.MemberDao">
+    <select id="findMemberByTelephone" resultType="com.apple.pojo.Member" parameterType="string">
+        select * from t_member where phoneNumber = #{telephone};
+    </select>
+
+    <insert id="add" parameterType="com.apple.pojo.Member">
+    <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+        select LAST_INSERT_ID();
+    </selectKey>
+        insert into t_member (id,fileNumber,name,sex,idCard,phoneNumber,regTime,password,email,birthday,remark)
+            values (null,null,#{name},#{sex},#{idCard},#{phoneNumber},#{regTime},null,null,null,null);
+    </insert>
+
+    <select id="CountMemberBeforeDate" parameterType="string" resultType="int">
+        SELECT count(id) from t_member where regTime &lt;=#{value};
+    </select>
+
+    <select id="countNewMemberByDate" resultType="long" parameterType="string">
+        SELECT count(*) from t_member where regTime = #{reportDate};
+    </select>
+
+    <select id="countTotalMember" resultType="long">
+        SELECT count(*) from t_member;
+    </select>
+
+    <select id="countThisWeekNewMember" parameterType="map" resultType="long">
+        SELECT count(*) from t_member where regTime between #{monday} and #{sunday};
+    </select>
+
+    <select id="countThisMonthNewMember" resultType="long" parameterType="map">
+        SELECT count(*) from t_member where regTime between #{month_1st_day} and #{month_last_day};
+    </select>
+</mapper>

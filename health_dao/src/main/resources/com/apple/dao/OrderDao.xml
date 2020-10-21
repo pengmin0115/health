@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.apple.dao.OrderDao">
+    <select id="findOrderSettingByOrderDate" parameterType="string" resultType="com.apple.pojo.OrderSetting">
+        select * from t_ordersetting where orderDate= #{date};
+    </select>
+
+    <select id="findOrderByMemberCondition" parameterType="com.apple.pojo.Order" resultType="com.apple.pojo.Order">
+        select * from t_order where member_id = #{memberId} and orderDate=#{orderDate} and setmeal_id = #{setmealId}
+    </select>
+
+    <insert id="add" parameterType="com.apple.pojo.Order">
+        <selectKey resultType="int" keyProperty="id" keyColumn="id" order="AFTER">
+            select LAST_INSERT_ID();
+        </selectKey>
+        insert into t_order (id,member_Id,orderDate,orderType,orderStatus,setmeal_Id)
+            values (null,#{memberId},#{orderDate},#{orderType},#{orderStatus},#{setmealId});
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="map">
+        SELECT m.name member,s.name setmeal, o.orderDate,o.orderType
+        from t_setmeal s, t_order o, t_member m
+        where o.member_id= m.id and s.id=o.setmeal_id and o.id=#{id}
+    </select>
+
+    <select id="getSetmealReport" resultType="map">
+        SELECT s.name, count(*) value
+        FROM t_order o, t_setmeal s
+        where o.setmeal_id = s.id GROUP BY s.name
+    </select>
+
+    <select id="countTodayOrderNumber" parameterType="string" resultType="long">
+        SELECT count(*) from t_order where orderDate = #{value};
+    </select>
+
+    <select id="countTodayVisitsNumber" parameterType="string" resultType="long">
+        SELECT count(*) FROM  t_order where orderDate = #{value} and orderStatus = "已到诊";
+    </select>
+
+    <select id="countOrderNumberDuringWeek" parameterType="map" resultType="long">
+        select count(*) from t_order where orderDate BETWEEN #{monday} and #{sunday};
+    </select>
+    <select id="countVisitNumberDuringWeek" parameterType="map" resultType="long">
+        select count(*) from t_order where orderStatus="已到诊" and  orderDate BETWEEN #{monday} and #{sunday};
+    </select>
+
+    <select id="countOrderNumberDuringMonth" parameterType="map" resultType="long">
+        select count(*) from t_order where orderDate BETWEEN #{month_1st_day} and #{month_last_day};
+    </select>
+
+    <select id="countVisitNumberDuringMonth" parameterType="map" resultType="long">
+        select count(*) from t_order where orderStatus="已到诊" and  orderDate BETWEEN #{month_1st_day} and #{month_last_day};
+    </select>
+</mapper>

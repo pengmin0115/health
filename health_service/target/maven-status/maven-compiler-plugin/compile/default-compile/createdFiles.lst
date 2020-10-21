@@ -1,0 +1,7 @@
+com\apple\service\impl\UserServiceImpl.class
+com\apple\service\impl\CheckItemServiceImpl.class
+com\apple\service\impl\CheckGroupServiceImpl.class
+com\apple\service\impl\ReportServiceImpl.class
+com\apple\service\impl\OrderSettingServiceImpl.class
+com\apple\service\impl\OrderServiceImpl.class
+com\apple\service\impl\SetMealServiceImpl.class

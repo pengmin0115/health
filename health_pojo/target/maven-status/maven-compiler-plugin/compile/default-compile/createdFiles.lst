@@ -1,0 +1,13 @@
+com\apple\pojo\Menu.class
+com\apple\pojo\User.class
+com\apple\pojo\Role.class
+com\apple\pojo\Permission.class
+com\apple\entity\Result.class
+com\apple\pojo\Order.class
+com\apple\pojo\CheckItem.class
+com\apple\entity\QueryPageBean.class
+com\apple\pojo\Member.class
+com\apple\pojo\Setmeal.class
+com\apple\pojo\CheckGroup.class
+com\apple\entity\PageResult.class
+com\apple\pojo\OrderSetting.class
