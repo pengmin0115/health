@@ -1,9 +1,0 @@
-com\apple\dao\MemberDao.class
-com\apple\dao\RoleDao.class
-com\apple\dao\OrderDao.class
-com\apple\dao\UserDao.class
-com\apple\dao\CheckItemDao.class
-com\apple\dao\CheckGroupDao.class
-com\apple\dao\PermissionDao.class
-com\apple\dao\SetMealDao.class
-com\apple\dao\OrderSettingDao.class

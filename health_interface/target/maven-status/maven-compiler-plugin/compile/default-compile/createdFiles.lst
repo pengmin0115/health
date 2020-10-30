@@ -1,7 +1,0 @@
-com\apple\service\OrderSettingService.class
-com\apple\service\OrderService.class
-com\apple\service\CheckItemService.class
-com\apple\service\SetMealService.class
-com\apple\service\CheckGroupService.class
-com\apple\service\ReportService.class
-com\apple\service\UserService.class
