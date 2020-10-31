@@ -34,13 +34,15 @@
         <!--登录配置-->
         <security:form-login login-processing-url="/login.do" login-page="/login.html"
                              default-target-url="/pages/main.html" always-use-default-target="true"
-                             authentication-failure-url="/login.html"/>
+                             authentication-failure-url="/login.html"
+                             authentication-failure-handler-ref="authorization"/>
         <!--禁用csrf-->
         <security:csrf disabled="true"/>
         <!--登出配置-->
         <security:logout logout-url="/logout.do" logout-success-url="/login.html" invalidate-session="true"/>
     </security:http>
 
+    <bean id="authorization" class="com.apple.security.Authorization"></bean>
     <!--认证管理器 -->
     <security:authentication-manager>
         <!--配置自定义认证授权类-->

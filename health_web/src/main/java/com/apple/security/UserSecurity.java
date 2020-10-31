@@ -1,4 +1,5 @@
 package com.apple.security;
+
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.apple.pojo.Permission;
 import com.apple.pojo.Role;
@@ -11,13 +12,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 /**
  * @author pengmin
  * @date 2020/10/16 17:24
  */
+
 @Component
 public class UserSecurity implements UserDetailsService {
     @Reference
@@ -28,8 +32,6 @@ public class UserSecurity implements UserDetailsService {
         com.apple.pojo.User user = userService.findUserByUsername(username);
         // 用户不存在直接返回null;
         if (user == null) {
-            //throw new BadCredentialsException("帐号不存在，请重新输入");
-            //log.error("Check Login fail.",ex);
             return null;
         }
         // 若用户存在则进行授权
